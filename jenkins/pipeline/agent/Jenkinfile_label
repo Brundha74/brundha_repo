@@ -1,0 +1,28 @@
+# to run only in a particular node we have to give agent{label 'slave1'}
+pipeline{
+    agent {label 'slave1'}
+        stages{
+            stage('BUILD'){
+                steps{
+                  sh '''
+                       #!/bin/bash
+                      pwd 
+                      ls -lrt
+                      sleep 5'''
+            }
+            }
+            stage('TEST'){
+                steps{
+                 sh '''
+                    #!/bin/bash
+                    ls
+                   sleep 5'''
+            }
+            }
+            stage('DEPLOY'){
+                steps{
+                sh 'sleep 5'
+            }
+            }
+        }
+    }
