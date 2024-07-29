@@ -1,0 +1,32 @@
+pipeline{
+  agent any
+  parameters {
+    string name: 'ENV_NAME'
+    defaultValue: 'TEST', 
+    description: 'input the env to deploy', 
+    
+    choice name: 'VERSION'
+    choices: ['1.0', '2.0', '3.0', '4.0'],
+    description: 'Enter the version of build to deploy', 
+    
+}
+ stages{
+   stage('DEPLOY'){
+      steps{
+          script{
+           /* IO - if i want to access a parameter in jenkins we need to use .params before the variable names */ 
+             if ("${params.ENV_NAME}" == 'TEST'){
+               echo "Deploy to Test env"
+             }
+            else if ("${params.ENV_NAME}" == 'PROD'){
+               echo "Deploy to Prod env"
+             }
+            else{
+                echo "No such Env"
+            }
+          }
+      }
+        
+}
+}
+}
