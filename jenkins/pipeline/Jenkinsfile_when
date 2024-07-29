@@ -1,1 +1,53 @@
 /* i want to give a condition to a complete stage for that at stage level give when condition */
+pipeline{
+  agent any
+  parameters {
+    string name: 'ENV_NAME',
+    defaultValue: 'TEST', 
+    description: 'input the env to deploy' 
+    
+    choice name: 'VERSION',
+    choices: ['1.0', '2.0', '3.0', '4.0'],
+    description: 'Enter the version of build to deploy'
+    
+}
+
+ stages{
+/* this stage will run only if it is in main branch is it is true it will run if it is false it will skip it */
+   stage('CHECK'){
+     when {
+        branch 'main'
+     }
+     steps{
+        echo "checkout to correct branch main"
+     }
+}
+   stage('DEPLOY_TEST'){
+/* this stage will only execute only when ENV_NAME == 'TEST' is true */
+      when{
+          expression {
+                params.ENV_NAME == 'TEST'
+          }
+      }
+      steps{
+          script{
+               echo "Deploy to Test env"
+             }
+      }
+ stage('DEPLOY_PROD'){
+/* this stage will only execute only when ENV_NAME == 'PROD' is true */
+      when{
+          expression {
+                params.ENV_NAME == 'PROD'
+          }
+      }
+      steps{
+          script{
+               echo "Deploy to Prod env"
+             }
+      }
+        
+}
+}
+}
+}
