@@ -33,7 +33,7 @@ pipeline{
              }
           }
 }
-          stage('DEPLOY'){
+      stage('DEPLOY'){
              step{
              sh 'sleep 5'
              }
