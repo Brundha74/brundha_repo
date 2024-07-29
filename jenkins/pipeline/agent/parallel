@@ -1,0 +1,45 @@
+/* run parallel block we need to put in parallel block and we need to separate with another stage */
+pipeline{
+   agent any{
+    stages{
+      stage('BUILD'){
+       steps{
+           sh '''
+                #!/bin/bash
+                ls -lrt
+                sleep 5
+                '''
+              }
+           }
+      stage('TEST ALL')
+        parallel{
+           stage ('TEST-windows'){
+               steps{
+                   sh '''
+                       #!/bin/bash
+                       pwd
+                       sleep 5
+                    '''
+                }
+             }
+           stage('TEST_Linux'){
+                steps{
+                   sh '''
+                       #!/bin/bash
+                       pwd
+                       sleep 5
+                    '''
+                } 
+             }
+          }
+        }
+   }
+          stage('DEPLOY'){
+             step{
+             sh 'sleep 5'
+             }
+          }
+       }
+             
+           
+            
