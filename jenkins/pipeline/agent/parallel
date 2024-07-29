@@ -11,7 +11,7 @@ pipeline{
                 '''
               }
            }
-      stage('TEST ALL')
+      stage('TEST ALL'){
         parallel{
            stage ('TEST-windows'){
                steps{
@@ -22,16 +22,17 @@ pipeline{
                     '''
                 }
              }
-           stage('TEST_Linux'){
-                steps{
-                   sh '''
-                       #!/bin/bash
-                       pwd
-                       sleep 5
-                    '''
+          stage('TEST_Linux'){
+             steps{
+                sh '''
+                     #!/bin/bash
+                     pwd
+                     sleep 5
+                   '''
                 } 
              }
           }
+}
           stage('DEPLOY'){
              step{
              sh 'sleep 5'
