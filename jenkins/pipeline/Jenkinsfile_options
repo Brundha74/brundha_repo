@@ -1,0 +1,16 @@
+pipeline{
+  agent any
+  /* I want to give a timeout means if a job runs more than that time i want to stop it for that we have to use options */
+  options{
+     timeout(time : 5, unit: 'SECONDS')
+  }
+    stages{
+      stage('BUILD'){
+        steps{
+          sh '''
+             sleep 10 '''
+        }
+        
+      }
+    }
+}
