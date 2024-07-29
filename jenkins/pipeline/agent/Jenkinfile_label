@@ -1,6 +1,6 @@
 /* to run only in a particular node we have to give agent{label 'slave1'} */
 pipeline{
-    agent {label 'slave1'}
+    agent {label 'Slave1'}
         stages{
             stage('BUILD'){
                 steps{
