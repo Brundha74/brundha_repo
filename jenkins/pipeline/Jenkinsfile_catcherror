@@ -1,6 +1,5 @@
 pipeline{
     agent any
-    
         stages{
             stage('BUILD'){
                 steps{
@@ -15,14 +14,14 @@ pipeline{
                 steps{
                   /* here even build fails also  mark as success and make stageresult as failure means only this stage will get fail not the complete job 
                   and it will continue the execution */
-                  catcherror(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                  sh '''
-                  #!/bin/bash
-                  pwd
-                  exit 1
-                  ls -lrt
-                  sleep 5
-                  '''
+                    catcherror(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                      sh '''
+                           #!/bin/bash
+                           pwd
+                           exit 1
+                           ls -lrt
+                           sleep 5
+                       '''
             }
                 }
             }
@@ -30,7 +29,6 @@ pipeline{
                 steps{
                   sh '''
                   #!/bin/bash
-                  pwd
                   ls -lrt
                   sleep 5
                   '''
