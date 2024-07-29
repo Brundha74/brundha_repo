@@ -1,0 +1,31 @@
+/* to run in a master or slave node we have to give agent none and also we have to specify in all the satge with agent any or agent{label} */
+pipeline{
+    agent none
+        stages{
+            stage('BUILD'){
+                agent { label 'master'}
+                steps{
+                  sh '''
+                       #!/bin/bash
+                      pwd 
+                      ls -lrt
+                      sleep 5'''
+            }
+            }
+            stage('TEST'){
+                agent { label 'Slave1'}
+                steps{
+                 sh '''
+                    #!/bin/bash
+                    ls
+                   sleep 5'''
+            }
+            }
+            stage('DEPLOY'){
+                agent any
+                steps{
+                sh 'sleep 5'
+            }
+            }
+        }
+    }
