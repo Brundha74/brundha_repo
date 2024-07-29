@@ -1,4 +1,4 @@
-# to run only in a particular node we have to give agent{label 'slave1'}
+/* to run only in a particular node we have to give agent{label 'slave1'} */
 pipeline{
     agent {label 'slave1'}
         stages{
