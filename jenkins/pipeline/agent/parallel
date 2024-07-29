@@ -1,6 +1,6 @@
 /* run parallel block we need to put in parallel block and we need to separate with another stage */
 pipeline{
-   agent any{
+   agent any
     stages{
       stage('BUILD'){
        steps{
@@ -32,14 +32,11 @@ pipeline{
                 } 
              }
           }
-        }
-   }
           stage('DEPLOY'){
              step{
              sh 'sleep 5'
              }
           }
-       }
-             
-           
-            
+        }
+}
+          
