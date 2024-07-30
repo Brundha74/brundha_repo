@@ -6,9 +6,9 @@ boolean testResult = true
 pipeline{
   agent any 
     stages{
-      stage{
-        steps('BUILD'){
-            sh 'sleep 5'
+      stage('BUILD'){
+         steps{
+                 sh 'sleep 5'
         }
       }
      stage('TEST'){
