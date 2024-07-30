@@ -1,0 +1,26 @@
+/* to clone a git repo private*/
+pipeline{
+  agent any
+    stages{
+      stage('CHECKOUT'){
+        steps{
+           git git branch: 'main', 
+             credentialsId: 'jenkins',
+             url: 'https://github.com/Brundha74/jenkins.git'
+           sh '''
+             pwd
+             ls -lrt
+            '''
+        }
+    }
+      /* to check whether get the clone repo or not */
+   stage('BUILD'){
+        steps{
+           sh '''
+             pwd
+             ls -lrt
+            '''
+        }
+  }
+}
+}
