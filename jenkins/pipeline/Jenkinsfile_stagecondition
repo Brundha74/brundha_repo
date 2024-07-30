@@ -33,7 +33,6 @@ pipeline{
                echo("Deploy stage is successfully executed")
              }else{
                echo ("Deploy stage is skipped due to previous TEST stage failure...)"
-        }
      }
 }
 }
