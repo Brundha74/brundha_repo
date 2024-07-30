@@ -4,7 +4,7 @@ pipeline{
     stages{
       stage('CHECKOUT'){
         steps{
-           git git branch: 'main', 
+           git branch: 'main', 
              credentialsId: 'jenkins',
              url: 'https://github.com/Brundha74/jenkins.git'
            sh '''
