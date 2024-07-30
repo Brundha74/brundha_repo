@@ -8,7 +8,7 @@ pipeline{
           // credentialsId: 'jenkins',
           // url: 'https://github.com/Brundha74/jenkins.git' OR we can use as
           checkout([$class:'GitSCM'
-                     branches: [[name:'*/main']),
+                     branches: [[name:'*/main']],
                      doGenerateSubmoduleConfigurations: false,
                      extensions: [],
                      submoduleCfg: [],
