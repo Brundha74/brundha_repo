@@ -8,11 +8,11 @@ pipeline{
           // credentialsId: 'jenkins',
           // url: 'https://github.com/Brundha74/jenkins.git' OR we can use as
           checkout([$class:'GitSCM'
-                     branches: [[name:'*/main']],
+                     branches:[[name:'*/main']],
                      doGenerateSubmoduleConfigurations: false,
                      extensions: [],
                      submoduleCfg: [],
-                     userRemoteConfigs: [[url: 'https://github.com/Brundha74/jenkins.git']]])
+                     userRemoteConfigs: [[url: 'https://github.com/Brundha74/jenkins.git' , CredentialsId: 'github_account']]])
 
            sh '''
              pwd
