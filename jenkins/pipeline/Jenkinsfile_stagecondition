@@ -28,12 +28,13 @@ pipeline{
      stage('DEPLOY'){
         steps{
 /* if test result is true then only deploy to this stage */
-         script{
+          script{
              if(testResult== true){
-               echo("Deploy stage is successfully executed")
-             }else{
+                echo("Deploy stage is successfully executed")
+              }else{
                echo ("Deploy stage is skipped due to previous TEST stage failure...)"
      }
+}
 }
 }
   stage('NOTIFICATION'){
