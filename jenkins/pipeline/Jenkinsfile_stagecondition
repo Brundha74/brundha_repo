@@ -1,0 +1,55 @@
+/* stage condition where i have 3 stages a,b,c if a fails i have to exc c stage is a pass exc b */
+/* to store the result whether the stage is pass r fail we put it in boolean testResult=true */
+/* based on the stage result of a , b and c will exc*/
+/* if TEST stage fails i need to send an notification through email */
+boolean testResult = true 
+pipeline{
+  agent any 
+    stages{
+      stage{
+        steps('BUILD"){
+            sh 'sleep 5'
+        }
+      }
+     stage('TEST'){
+        steps{
+          script{
+              try{
+               echo "running test cases in this stage..."
+
+              } catch (Exception e){
+             echo "stage failed due to some error"
+             testResult = false
+
+            }
+          }  
+        }
+     }
+     stage('DEPLOY'){
+        steps{
+/* if test result is true then only deploy to this stage */
+         script{
+             if(testResult== true){
+               echo("Deploy stage is successfully executed")
+             }else{
+               echo ("Deploy stage is skipped due to previous TEST stage failure..."
+          }
+           } 
+        }
+     }
+  stage('NOTIFICATION'){
+        steps{
+/* if test stage fails deployment stage will not exc, it exc only when test stage pass, whenever the error in test stage testresult mark as fails */
+/* if test stage is false it wont exc deploy stage it exc notification to send mail */
+         script{
+             if(testResult== false){
+               echo("Sending notification on test failure")
+             }else{
+               echo ("Deploy stage successfully executed)"
+          }
+           } 
+        }
+     }
+}
+}
+}
