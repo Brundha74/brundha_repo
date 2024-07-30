@@ -4,9 +4,16 @@ pipeline{
     stages{
       stage('CHECKOUT'){
         steps{
-           git branch: 'main', 
-             credentialsId: 'jenkins',
-             url: 'https://github.com/Brundha74/jenkins.git'
+           // git branch: 'main', 
+          // credentialsId: 'jenkins',
+          // url: 'https://github.com/Brundha74/jenkins.git' OR we can use as
+          checkout([$class:'GitSCM'
+                     branches: [[name:'*/main']),
+                     doGenerateSubmoduleConfigurations: false,
+                     extensions: [],
+                     submoduleCfg: [],
+                     userRemoteConfigs: [[url: 'https://github.com/Brundha74/jenkins.git']]])
+
            sh '''
              pwd
              ls -lrt
