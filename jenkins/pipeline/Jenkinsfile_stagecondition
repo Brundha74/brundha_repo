@@ -16,6 +16,7 @@ pipeline{
           script{
               try{
                echo "running test cases in this stage..."
+               exit 1
 
               } catch (Exception e){
              echo "stage failed due to some error"
