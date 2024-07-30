@@ -45,7 +45,7 @@ pipeline{
              if(testResult== false){
                echo("Sending notification on test failure")
              }else{
-               echo ("Deploy stage successfully executed)"
+               echo ("Deploy stage successfully executed")
           }
            } 
         }
